@@ -25,6 +25,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: Remove local cross-build config (force native target)
+        shell: bash
         run: rm -rf .cargo
       - uses: dtolnay/rust-toolchain@stable
       - uses: Swatinem/rust-cache@v2
@@ -62,6 +63,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: Remove local cross-build config (force native target)
+        shell: bash
         run: rm -rf .cargo
       - uses: dtolnay/rust-toolchain@stable
         with:
