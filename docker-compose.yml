@@ -1,0 +1,49 @@
+# LLM Router stack: Rust router (:8080) + Next.js dashboard BFF (:3000).
+# Usage:
+#   docker compose up --build
+#
+# The dashboard talks to the router over the internal network as
+# ROUTER_URL=http://router:8080; the browser only ever reaches :3000.
+
+services:
+  router:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      # features: postgres/redis needs sqlx/fred/governor — enable with
+      # args: { FEATURES: full } and adjust database.mode in the mounted config.
+      args: { FEATURES: "" }
+    image: llm-router
+    restart: unless-stopped
+    ports:
+      - "8080:8080" # data-plane API (virtual keys); keep internal if unused
+    volumes:
+      - router-data:/app/data
+      # - ./config:/app/config # override default.yaml (providers, admin_key)
+    environment:
+      RUST_LOG: info
+
+  web:
+    build:
+      context: ./web
+      dockerfile: Dockerfile
+    image: llm-router-web
+    restart: unless-stopped
+    depends_on:
+      - router
+    ports:
+      - "3000:3000"
+    volumes:
+      # users.json / teams.json (dashboard logins) persist across restarts.
+      # Seeded from the image on first start; edit users via the UI afterwards.
+      - web-data:/app/data
+    environment:
+      # Rust admin API key — MUST match security.admin_key in router config.
+      ADMIN_API_KEY: dev-admin
+      # Session signing secret. CHANGE THIS in production.
+      AUTH_SECRET: change-me-random-secret
+      ROUTER_URL: http://router:8080
+
+volumes:
+  router-data:
+  web-data:
