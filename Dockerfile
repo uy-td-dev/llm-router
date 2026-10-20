@@ -3,7 +3,7 @@
 # Run:    docker run -p 8080:8080 -v llm-router-data:/app/data llm-router
 
 # ---- build ---------------------------------------------------------------
-FROM rust:1.83-slim AS builder
+FROM rust:1-slim AS builder
 
 # Build deps (needed to compile/link, incl. the bundled SQLite C driver)
 RUN apt-get update && apt-get install -y --no-install-recommends \

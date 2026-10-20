@@ -1,6 +1,7 @@
 # Rust
 /target
-Cargo.lock
+# Cargo.lock is tracked: this repo builds a binary, so the release pipeline
+# (Docker + CI) must resolve the exact same dependency versions.
 
 # Config with secrets
 config.yaml
