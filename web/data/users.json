@@ -1,0 +1,20 @@
+[
+    {
+        "username":  "admin",
+        "passwordHash":  "240be518fabd2724ddb6f04eeb1da5967448d7e831c08c8fa822809f74c720a9",
+        "role":  "admin",
+        "displayName":  "Administrator"
+    },
+    {
+        "username":  "alice",
+        "passwordHash":  "4e40e8ffe0ee32fa53e139147ed559229a5930f89c2204706fc174beb36210b3",
+        "role":  "user",
+        "displayName":  "Alice"
+    },
+    {
+        "username":  "bob",
+        "passwordHash":  "c4afd9c7b912ea03f76986236199e2a58619ad9f004ec0199428fc75efd404cd",
+        "role":  "user",
+        "displayName":  "Bob Tester"
+    }
+]

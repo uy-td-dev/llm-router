@@ -1,0 +1,41 @@
+# Rust
+/target
+Cargo.lock
+
+# Config with secrets
+config.yaml
+.env
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+
+# Web (Next.js)
+web/node_modules/
+web/.next/
+web/.env.local
+web/.env*.local
+web/data/oauth.json
+web/data/*.tmp
+
+# Rust runtime data (contains secrets: upstream keys, DB, cached state)
+data/connections.json
+data/*.db
+data/*.db-shm
+data/*.db-wal
+data/hub.json
+data/combos.json
+data/oauth.json
+
+# Seed identity files (default admin) stay tracked
+!web/data/users.json
+!web/data/teams.json
